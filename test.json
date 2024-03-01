@@ -1,0 +1,483 @@
+[
+  {
+    "label": "menu",
+    "id": "id64",
+    "type": "message",
+    "items": [
+      {
+        "id": "id118",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "مرحبا 👋\nشكرا لتواصلك مع مركز خدمة الطالب - جامعة البحرين\n‎كيف يمكننا مساعدتك؟\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id117",
+            "content": {
+              "en": {
+                "text": "English"
+              }
+            },
+            "next_execution_node_id": "id479",
+            "variable_value": "en"
+          },
+          {
+            "id": "id189",
+            "content": {
+              "en": {
+                "text": "التحدث لخدمة الطالب"
+              }
+            },
+            "next_execution_node_id": "id2214",
+            "variable_value": "ar"
+          },
+          {
+            "id": "id318",
+            "content": {
+              "en": {
+                "text": "للطلبة المنتظمين"
+              }
+            },
+            "next_execution_node_id": "id2960",
+            "variable_value": "ar"
+          },
+          {
+            "id": "id345",
+            "content": {
+              "en": {
+                "text": "للطلبة المستجدين"
+              }
+            },
+            "next_execution_node_id": "id3623",
+            "variable_value": "ar"
+          }
+        ],
+        "action_type": "choice",
+        "set_variable": "language"
+      }
+    ],
+    "start_node": true
+  },
+  {
+    "label": "Main List",
+    "id": "id479",
+    "type": "message",
+    "items": [
+      {
+        "id": "id499",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "👋 Hello\nThank you for contacting UOB Student Service Centre.‎\n?How can we help you\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id498",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              }
+            },
+            "next_execution_node_id": "id64"
+          },
+          {
+            "id": "id757",
+            "content": {
+              "en": {
+                "text": "Speak to an Agent"
+              }
+            },
+            "next_execution_node_id": "id2214"
+          },
+          {
+            "id": "id778",
+            "content": {
+              "en": {
+                "text": "Enrolled Students"
+              }
+            },
+            "next_execution_node_id": "id2960"
+          },
+          {
+            "id": "id915",
+            "content": {
+              "en": {
+                "text": "New Students"
+              }
+            },
+            "next_execution_node_id": "id3623"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "connect with agent",
+    "id": "id2214",
+    "type": "message",
+    "items": [
+      {
+        "id": "id2414",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Please wait while we transfer you to service center agent"
+          },
+          "ar": {
+            "text": "يرجى الإنتظار.. سيتم تحويلك الى احد موظفين خدمة العملاء لمساعدتك..\n"
+          }
+        },
+        "action_type": "connect"
+      }
+    ],
+    "assigned_team_type": "sales"
+  },
+  {
+    "label": "Enrolled ",
+    "id": "id2960",
+    "type": "message",
+    "items": [
+      {
+        "id": "id3116",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Enrolled Students\nPlease select the help required from below"
+          },
+          "ar": {
+            "text": "للطلبة المنتظمين\nيرجى اختيار المساعدة المطلوبة\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id3115",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          },
+          {
+            "id": "id3137",
+            "content": {
+              "en": {
+                "text": "Graduation Certifi.."
+              },
+              "ar": {
+                "text": "طلب شهادة/أفادة تخرج"
+              }
+            },
+            "next_execution_node_id": "id4371"
+          },
+          {
+            "id": "id3162",
+            "content": {
+              "en": {
+                "text": "Academic Calendar"
+              },
+              "ar": {
+                "text": "للتقويم الأكاديمي"
+              }
+            },
+            "next_execution_node_id": "id4926"
+          },
+          {
+            "id": "id3183",
+            "content": {
+              "en": {
+                "text": "Add New Course"
+              },
+              "ar": {
+                "text": "إدراج مقررات دراسية"
+              }
+            },
+            "next_execution_node_id": "id5465"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "new-student",
+    "id": "id3623",
+    "type": "message",
+    "items": [
+      {
+        "id": "id3869",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Thank you for your interest in Bahrain university \n"
+          },
+          "ar": {
+            "text": "شكرا لاهتمامك بجامعة البحرين\n\nيرجى اختيار المساعدة المطلوبة\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id3868",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          },
+          {
+            "id": "id3899",
+            "content": {
+              "en": {
+                "text": "Laws and Regulations"
+              },
+              "ar": {
+                "text": "القوانين والأنظمة"
+              }
+            },
+            "next_execution_node_id": "id7278"
+          },
+          {
+            "id": "id3938",
+            "content": {
+              "en": {
+                "text": "Academic Majors"
+              },
+              "ar": {
+                "text": "التخصصات الأكاديمية"
+              }
+            },
+            "next_execution_node_id": "id7756"
+          },
+          {
+            "id": "id4005",
+            "content": {
+              "en": {
+                "text": "Conditions/Admission"
+              },
+              "ar": {
+                "text": "شروط القبول"
+              }
+            },
+            "next_execution_node_id": "id8048"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "graduation certificate",
+    "id": "id4371",
+    "type": "message",
+    "items": [
+      {
+        "id": "id11767",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Please note that you can request a graduation certificate via the information systems website, or if you want to contact the Student Service Center team to request a graduation certificate,\nPlease provide us with your following information:\n- Full Name:\n- University ID:\n- Contact Number:\n- A copy of the ID card ( back and front ) printed on A4 with the signature on the paper."
+          },
+          "ar": {
+            "text": "يرجى العلم  بإمكانك طلب إفادة التخرج عبر طريق موقع نظم المعلومات أو في حال أردت التواصل مع فريق مركز خدمة الطالب لطلب شهادة التخرج\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id11766",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "New message",
+    "id": "id4926",
+    "type": "message",
+    "items": [
+      {
+        "id": "id5050",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Kindly find the below link for Academic Calendar:\nhttps://www.uob.edu.bh/academic-calendar"
+          },
+          "ar": {
+            "text": "بإمكانك الأطلاع على التقويم الأكاديمي عبر الرابط التالي\nhttps://www.uob.edu.bh/academic-calendar"
+          }
+        },
+        "actions": [
+          {
+            "id": "id5049",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "New courses",
+    "id": "id5465",
+    "type": "message",
+    "items": [
+      {
+        "id": "id5631",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Kindly note that you can add New Course Via SIS website\nhttps://sis.uob.edu.hb/uob_sis_prod/Default.aspx"
+          },
+          "ar": {
+            "text": "بامكانك اضاقة المقررات عبر موقع SIS \n\nhttps://sis.uob.edu.bh/uob_sis_prod/Default.aspx"
+          }
+        },
+        "actions": [
+          {
+            "id": "id5630",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "laws and reglations",
+    "id": "id7278",
+    "type": "message",
+    "items": [
+      {
+        "id": "id7420",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "You can view the University of Bahrain’s laws and regulations via the following link:\n\nhttps://www.uob.edu.bh/about/bylaws-regulations-and-policies/\n"
+          },
+          "ar": {
+            "text": " بإمكانك الأطلاع على القوانين والأنظمة الخاصة بجامعة البحرين عبر الرابط التالي\n\nhttps://www.uob.edu.bh/about/bylaws-regulations-and-policies/?lang=ar"
+          }
+        },
+        "actions": [
+          {
+            "id": "id7419",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "academic-majors",
+    "id": "id7756",
+    "type": "message",
+    "items": [
+      {
+        "id": "id7868",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Kindly find the below link for Academic majors:\nhttps://www.uob.edu.bh/academic-calendar"
+          },
+          "ar": {
+            "text": "بإمكانك الأطلاع على البرامج الأكاديمية لجامعة البحرين عبر الرابط التالي\nhttps://www.uob.edu.bh/academics/?lang=ar\n"
+          }
+        },
+        "actions": [
+          {
+            "id": "id7867",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "New message",
+    "id": "id8048",
+    "type": "message",
+    "items": [
+      {
+        "id": "id8294",
+        "type": "text",
+        "content": {
+          "en": {
+            "text": "Kindly find the below link for conditions for admission to the University of Bahrain :\n\nhttps://www.uob.edu.bh/admission-requirements"
+          },
+          "ar": {
+            "text": "بإمكانك الأطلاع على شروط القبول لتخصصات البكالوريس والدبلوم والدراسات العليا عبر الموقع الرسمي لجامعة البحرين:https://www.uob.edu.bh/admission-requirements"
+          }
+        },
+        "actions": [
+          {
+            "id": "id8293",
+            "content": {
+              "en": {
+                "text": "Back to Main List"
+              },
+              "ar": {
+                "text": "للقائمة الرئيسية"
+              }
+            },
+            "next_execution_node_id": "id64"
+          }
+        ],
+        "action_type": "choice"
+      }
+    ]
+  }
+]
