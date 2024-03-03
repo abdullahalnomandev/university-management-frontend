@@ -7,22 +7,22 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
+import { storeUserInfo } from "@/services/auth.service";
 
 type FormValues = {
   id: string;
   password: string;
 };
 const LoginPage = () => {
-
   const [userLogin] = useUserLoginMutation();
-  const onSubmit: SubmitHandler<FormValues> = async (data:any) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
-      const res = await userLogin({...data}).unwrap();
+      const res = await userLogin({ ...data }).unwrap();
+      storeUserInfo({ accessToken: res?.data?.accessToken });
       console.log(res);
-
-    } catch (err) {
-      console.log(err);
-    } 
+    } catch (err: any) {
+      console.log(err.message);
+    }
   };
   return (
     <Row
