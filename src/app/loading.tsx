@@ -1,11 +1,19 @@
-import React from 'react';
+import { Row, Space, Spin } from "antd";
 
 const Loading = () => {
-    return (
-        <div>
-             <h1>Loading....</h1>
-        </div>
-    );
+  return (
+    <Row
+      justify="center"
+      align="middle"
+      style={{
+        height: "100vh",
+      }}
+    >
+      <Space>
+        <Spin tip="Loading" size="large"></Spin>
+      </Space>
+    </Row>
+  );
 };
 
 export default Loading;

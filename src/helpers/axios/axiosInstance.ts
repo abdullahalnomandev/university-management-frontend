@@ -1,4 +1,5 @@
 import { authKey } from "@/constants/storagekey";
+import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
 
@@ -22,13 +23,24 @@ instance.interceptors.request.use(
   }
 );
 
-// Add a response interceptor
-instance.interceptors.response.use(
-  function (response) {
-    return response;
+// @ts-ignore
+instance.interceptors.response.use(function (response) {
+    
+    const responseObject: ResponseSuccessType = {
+      data: response?.data?.data,
+      meta: response?.data?.meta
+    };
+    return responseObject;
   },
+  
   function (error) {
-    return Promise.reject(error);
+    const responseErrorObject:IGenericErrorResponse = {
+      statusCode: error?.response?.data?.statusCode || 500,
+      message: error?.response?.data?.message || "Something went wrong",
+      errorMessages: error?.response?.data?.message
+    };
+    return responseErrorObject;
+    // return Promise.reject(error);
   }
 );
 export { instance };
