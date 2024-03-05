@@ -1,5 +1,5 @@
 import { authKey } from "@/constants/storagekey";
-import { removeUserInfo } from "@/services/auth.service";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { UserOutlined } from "@ant-design/icons";
 import {  Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,7 @@ const { Header:AntHeader} = Layout;
 const Header = () => {
 
     const router = useRouter()
+  const { role } = getUserInfo() as any;
 
     const logOut = ()=>{
         removeUserInfo(authKey)
@@ -36,7 +37,7 @@ const Header = () => {
       }}>
         <Dropdown menu={{ items }}>
             <Space wrap size={16}>
-              <Avatar size="large" icon={<UserOutlined />} />
+             {role} <Avatar size="large" icon={<UserOutlined />} />
             </Space>
         </Dropdown>
       </Row>
