@@ -28,7 +28,7 @@ const DashboardLayout: React.FC<IProps> = ({ children }) => {
       justify="center"
       align="middle"
       style={{
-        height: "100vh",
+        height: "100vh"
       }}
     >
       <Space>

@@ -10,9 +10,9 @@ const Contents: React.FC<IProps> = ({ children }) => {
   return (
     <Content style={{ minHeight: "100vh", color: "black" }}>
       <Header />
-      {children}
+      <div style={{ padding: "10px" }}>{children}</div>
     </Content>
   );
-};  
+};
 
 export default Contents;

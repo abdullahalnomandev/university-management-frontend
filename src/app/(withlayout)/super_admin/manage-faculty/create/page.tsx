@@ -1,7 +1,7 @@
 import UMBreadCrumb from '@/components/ui/UMBreadCrumb';
 import React from 'react';
 
-const CreateStudentPage = () => {
+const CreateFacultyPage = () => {
     return (
       <div>
         <UMBreadCrumb
@@ -11,14 +11,14 @@ const CreateStudentPage = () => {
               link: `/super_admin`
             },
             {
-              label: `manage-student`,
-              link: `/super_admin/manage-student`
+              label: `manage-faculty`,
+              link: `/super_admin/manage-faculty`
             }
           ]}
         />
-        <h1>Create Student</h1>
+        <h1>Create Faculty</h1>
       </div>
     );
 };
 
-export default CreateStudentPage;
+export default CreateFacultyPage;
