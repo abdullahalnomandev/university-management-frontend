@@ -147,8 +147,8 @@ export const sidebarItems = (role: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/department`}>Department</Link>,
-          key: `/${role}/department`
+          label: <Link href={`/${role}/management/department`}>Department</Link>,
+          key: `/${role}/management/department`
         }
       ]
     }

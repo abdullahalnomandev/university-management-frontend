@@ -1,13 +1,11 @@
-"use client"
+"use client";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { getUserInfo } from "@/services/auth.service";
 import { Button } from "antd";
 import Link from "next/link";
 
-const ManageStudent = () => {
-
-    const {role} = getUserInfo() as any;
-
+const DepartmentPage = () => {
+  const { role } = getUserInfo() as any;
   return (
     <div>
       <UMBreadCrumb
@@ -18,12 +16,12 @@ const ManageStudent = () => {
           }
         ]}
       />
-      <h1>Manage Student</h1>
-      <Link href="/super_admin/manage-student/create">
-        <Button type='primary'>Create </Button>
-      </Link>
+      <h1> Department List</h1>
+        <Link href="/super_admin/management/department/create">
+          <Button type="primary">Create </Button>
+        </Link>
     </div>
   );
 };
 
-export default ManageStudent;
+export default DepartmentPage;
