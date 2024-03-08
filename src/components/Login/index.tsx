@@ -1,5 +1,5 @@
 "use client";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 import React from "react";
 import loginImage from "@/assets/login.png";
 import Image from "next/image";
@@ -7,11 +7,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
-import {
-  getUserInfo,
-  isLoggedIn,
-  storeUserInfo
-} from "@/services/auth.service";
+import {storeUserInfo} from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 
 type FormValues = {
@@ -27,11 +23,11 @@ const Login = () => {
     try {
       const res = await userLogin({ ...data }).unwrap();
       const res2 = await userLogin(data);
-      console.log("res2", res2);
       storeUserInfo({ accessToken: res?.accessToken });
       console.log(res);
       if (res?.accessToken) {
         router.push("/profile");
+        message.success("User logged in successfully")
       }
 
       // console.log(res);
