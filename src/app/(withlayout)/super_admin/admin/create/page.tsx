@@ -1,10 +1,12 @@
 "use client";
 import Form from "@/components/Forms/Form";
+import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
+import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
-import { departmentOptions, genderOptions } from "@/constants/global";
+import { bloodGroupOptions, departmentOptions, genderOptions } from "@/constants/global";
 import { getUserInfo } from "@/services/auth.service";
 import { Button, Col, Row } from "antd";
 import React from "react";
@@ -126,7 +128,7 @@ const CreateAdminPage = () => {
                 span={8}
                 style={{ marginBottom: "10px" }}
               >
-               <UploadImage ></UploadImage>
+                <UploadImage></UploadImage>
               </Col>
             </Row>
           </div>
@@ -185,38 +187,55 @@ const CreateAdminPage = () => {
                 span={8}
                 style={{ marginBottom: "10px" }}
               >
+                <FormDatePicker
+                  size="large"
+                  name="admin.dateOfBirth"
+                  label="Date of birth"
+                  
+                />
+              </Col>
+              <Col
+                className="gutter-row"
+                span={8}
+                style={{ marginBottom: "10px" }}
+              >
+                <FormSelectField
+                  name="admin.bloodGroup"
+                  options={bloodGroupOptions}
+                  size="large"
+                  label="Blood Group"
+                  placeholder="Select"
+                />
+              </Col>
+              <Col
+                className="gutter-row"
+                span={8}
+                style={{ marginBottom: "10px" }}
+              >
                 <FormInput
-                  type="password"
-                  name="password"
+                  type="text"
+                  name="admin.designation"
                   size="large"
-                  label="Password"
+                  label="Designation"
                 />
               </Col>
               <Col
                 className="gutter-row"
-                span={8}
+                span={12}
                 style={{ marginBottom: "10px" }}
               >
-                <FormSelectField
-                  name="admin.gender"
-                  options={genderOptions}
-                  size="large"
-                  label="Gender"
-                  placeholder="Select"
+                <FormTextArea
+                  rows={3}
+                  name="admin.presentAddress"
+                  label="Present Address"
                 />
               </Col>
               <Col
                 className="gutter-row"
-                span={8}
+                span={12}
                 style={{ marginBottom: "10px" }}
               >
-                <FormSelectField
-                  name="admin.managementDepartment"
-                  options={departmentOptions}
-                  size="large"
-                  label="Department"
-                  placeholder="Select"
-                />
+                <FormTextArea rows={3} name="admin.permanentAddress" label="Permanent Address" />
               </Col>
             </Row>
           </div>
