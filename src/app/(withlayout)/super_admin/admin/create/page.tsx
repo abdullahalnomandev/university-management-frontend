@@ -7,7 +7,6 @@ import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
 import { bloodGroupOptions, departmentOptions, genderOptions } from "@/constants/global";
-import { getUserInfo } from "@/services/auth.service";
 import { Button, Col, Row } from "antd";
 import React from "react";
 
