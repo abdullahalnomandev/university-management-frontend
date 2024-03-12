@@ -7,16 +7,17 @@ import { useAddDepartmentMutation } from "@/redux/api/departmentApi";
 import { Button, Col, Row, message } from "antd";
 
 const CreateDepartmentPage = () => {
-
   const [addDepartment] = useAddDepartmentMutation();
   const onSubmit = async (data: any) => {
-     message.loading("Creating...")
+    message.loading("Creating...");
     try {
-      await addDepartment(data);
-      message.success("Department added successfully")
+      const res = await addDepartment(data);
+      if (res) {
+        message.success("Department added successfully");
+      }
     } catch (err: any) {
       console.error(err.message);
-      message.error(err.message)
+      message.error(err.message);
     }
   };
   const base = "super_admin";
@@ -25,7 +26,7 @@ const CreateDepartmentPage = () => {
       <UMBreadCrumb
         items={[
           { label: `${base}`, link: `/${base}` },
-          { label: "department", link: `/${base}/department` }
+          { label: "department", link: `/${base}/management/department` }
         ]}
       />
       <h1>Create Department</h1>
