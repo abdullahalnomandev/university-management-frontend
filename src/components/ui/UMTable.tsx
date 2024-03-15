@@ -28,7 +28,7 @@ const UMTable: React.FC<UMTableProps> = ({
     ? {
         pageSize,
         total: totalPages,
-        pageSizeOptions: [5, 10, 20],
+        // pageSizeOptions: [5, 10, 20],
         showSizeChanger: showSizeChanger,
         onChange: onPaginationChange
       }
