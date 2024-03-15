@@ -65,8 +65,8 @@ const DepartmentPage = () => {
     {
       title: "Created At",
       dataIndex: "createdAt",
-      render:function(data:any){
-        return data && dayjs(data).format('MMM D, YYYY hh:mm A')
+      render:function(data:any,){
+        return <div key={data?.id}>{data && dayjs(data).format('MMM D, YYYY hh:mm A')}</div>
       },
       sorter: true,
     },
@@ -75,7 +75,7 @@ const DepartmentPage = () => {
       title: "Action",
       render: (data: any) => {
         return (
-          <div style={{ display: "flex", gap: 2 }}>
+          <div key={data?.id} style={{ display: "flex", gap: 2 }} >
            <Link href={`/super_admin/management/department/edit/${data?.id}`}>
            <Button onClick={() => console.log(data)} type="primary">
               <MdEdit />

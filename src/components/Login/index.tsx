@@ -22,6 +22,7 @@ const Login = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
+    
       storeUserInfo({ accessToken: res?.accessToken });
       console.log(res);
       if (res?.accessToken) {

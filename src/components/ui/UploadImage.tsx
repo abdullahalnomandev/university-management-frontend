@@ -1,7 +1,10 @@
+"use client"
 import React, { useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { GetProp, UploadProps } from "antd";
+import Image from "next/image";
+import { useFormContext } from "react-hook-form";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -11,7 +14,7 @@ const getBase64 = (img: FileType, callback: (url: string) => void) => {
   reader.readAsDataURL(img);
 };
 
-const beforeUpload = (file: FileType) => {
+const beforeUpload = (file: FileType ) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
     message.error("You can only upload JPG/PNG file!");
@@ -23,9 +26,16 @@ const beforeUpload = (file: FileType) => {
   return isJpgOrPng && isLt2M;
 };
 
-const App: React.FC = () => {
+
+type ImageUploadProps ={
+  name:string;
+
+}
+const UploadImage: React.FC<ImageUploadProps> = ({name}) => {
+
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+  const {setValue} = useFormContext();
 
   const handleChange: UploadProps["onChange"] = (info) => {
     if (info.file.status === "uploading") {
@@ -33,7 +43,7 @@ const App: React.FC = () => {
       return;
     }
     if (info.file.status === "done") {
-      // Get this url from response in real world.
+       setValue(name,info.file.originFileObj)
       getBase64(info.file.originFileObj as FileType, (url) => {
         setLoading(false);
         setImageUrl(url);
@@ -51,16 +61,16 @@ const App: React.FC = () => {
   return (
     <>
       <Upload
-        name="avatar"
+        name={name}
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+        action="/api/file"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
         {imageUrl ? (
-          <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+          <Image src={imageUrl} alt="avatar" style={{ width:"100%" }} width={100} height={100} />
         ) : (
           uploadButton
         )}
@@ -69,4 +79,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default UploadImage;
