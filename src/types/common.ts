@@ -58,3 +58,11 @@ export interface IAdmin {
   updatedAt: string;
   __v: number;
 }
+
+export interface IAcademicFaculty {
+  id: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
