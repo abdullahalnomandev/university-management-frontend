@@ -1,3 +1,4 @@
+"use client"
 import Form from '@/components/Forms/Form';
 import FormInput from '@/components/Forms/FormInput';
 import FormSelectField from '@/components/Forms/FormSelectField';
@@ -5,10 +6,10 @@ import UMBreadCrumb from '@/components/ui/UMBreadCrumb';
 import { bloodGroupOptions, departmentOptions, genderOptions } from '@/constants/global';
 import { Button, Col, Row } from 'antd';
 import React from 'react';
-import  UploadImage  from '@/components/ui/UploadImage';
 import FormDatePicker from '@/components/Forms/FormDatePicker';
 import FormTextArea from '@/components/Forms/FormTextArea';
 import { yupResolver } from '@hookform/resolvers/yup';
+import UploadImage from '@/components/ui/UploadImage';
 
 const CreateFacultyPage = () => {
 
@@ -51,7 +52,7 @@ const CreateFacultyPage = () => {
               <Row gutter={{ xs: 8, sm: 8 }}>
                 <Col
                   className="gutter-row"
-                  span={8}
+                  span={6}
                   style={{ marginBottom: "10px" }}
                 >
                   <FormInput
@@ -63,7 +64,7 @@ const CreateFacultyPage = () => {
                 </Col>
                 <Col
                   className="gutter-row"
-                  span={8}
+                  span={6}
                   style={{ marginBottom: "10px" }}
                 >
                   <FormInput
@@ -75,7 +76,7 @@ const CreateFacultyPage = () => {
                 </Col>
                 <Col
                   className="gutter-row"
-                  span={8}
+                  span={6}
                   style={{ marginBottom: "10px" }}
                 >
                   <FormInput
@@ -87,7 +88,7 @@ const CreateFacultyPage = () => {
                 </Col>
                 <Col
                   className="gutter-row"
-                  span={8}
+                  span={6}
                   style={{ marginBottom: "10px" }}
                 >
                   <FormInput
@@ -116,20 +117,34 @@ const CreateFacultyPage = () => {
                   style={{ marginBottom: "10px" }}
                 >
                   <FormSelectField
+                    name="faculty.managementFaculty"
+                    options={departmentOptions}
+                    size="large"
+                    label="Academic Faculty"
+                    placeholder="Select"
+                  />
+                </Col>
+                <Col
+                  className="gutter-row"
+                  span={8}
+                  style={{ marginBottom: "10px" }}
+                >
+                  <FormSelectField
                     name="faculty.managementDepartment"
                     options={departmentOptions}
                     size="large"
-                    label="Department"
+                    label="Academic Department"
                     placeholder="Select"
                   />
                 </Col>
 
                 <Col
                   className="gutter-row"
-                  span={8}
+                  span={6}
                   style={{ marginBottom: "10px" }}
                 >
-                  <UploadImage></UploadImage>
+                  <UploadImage name="file" />
+
                 </Col>
               </Row>
             </div>

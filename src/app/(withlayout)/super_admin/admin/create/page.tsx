@@ -6,16 +6,45 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
-import { bloodGroupOptions, departmentOptions, genderOptions } from "@/constants/global";
+import { bloodGroupOptions, genderOptions } from "@/constants/global";
+import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
+import {
+  useDepartmentsQuery,
+} from "@/redux/api/departmentApi";
 import { adminSchema } from "@/schemas/admin";
+import { IDepartment } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 import React from "react";
 
 const CreateAdminPage = () => {
-  const onSubmit = async (data: any) => {
+  const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });
+  const [addAdminWithFormData] = useAddAdminWithFormDataMutation();
+
+  // @ts-ignore
+  const departments: IDepartment[] = data?.departments;
+
+  const departmentOptions =
+    departments &&
+    departments?.map((department) => {
+      return {
+        label: department?.title,
+        value: department?.id,
+      };
+    });
+  const onSubmit = async (values: any) => {
+    const obj = { ...values };
+    const file = obj["file"];
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+    message.loading("Creating...")
     try {
-      console.log(data);
+      await addAdminWithFormData(formData);
+      message.success("Admin created successfully")
     } catch (err: any) {
       console.log("err", err);
     }
@@ -26,23 +55,23 @@ const CreateAdminPage = () => {
         items={[
           {
             label: `super_admin`,
-            link: `/super_admin`
+            link: `/super_admin`,
           },
           {
             label: `admin`,
-            link: `/super_admin/admin`
-          }
+            link: `/super_admin/admin`,
+          },
         ]}
       />
       <h1>Create Admin</h1>
       <div>
-        <Form submitHandler={onSubmit} resolver = {yupResolver(adminSchema)}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <div
             style={{
               border: "1px solid #d9d9d9",
               borderRadius: "5px",
               padding: "15px",
-              marginBottom: "10px"
+              marginBottom: "10px",
             }}
           >
             <p style={{ fontSize: "18px", marginBottom: "10px" }}>
@@ -129,7 +158,7 @@ const CreateAdminPage = () => {
                 span={8}
                 style={{ marginBottom: "10px" }}
               >
-                <UploadImage></UploadImage>
+                <UploadImage name="file" />
               </Col>
             </Row>
           </div>
@@ -140,7 +169,7 @@ const CreateAdminPage = () => {
               border: "1px solid #d9d9d9",
               borderRadius: "5px",
               padding: "15px",
-              marginBottom: "10px"
+              marginBottom: "10px",
             }}
           >
             <p style={{ fontSize: "18px", marginBottom: "10px" }}>
@@ -192,7 +221,6 @@ const CreateAdminPage = () => {
                   size="large"
                   name="admin.dateOfBirth"
                   label="Date of birth"
-                  
                 />
               </Col>
               <Col
@@ -236,7 +264,11 @@ const CreateAdminPage = () => {
                 span={12}
                 style={{ marginBottom: "10px" }}
               >
-                <FormTextArea rows={3} name="admin.permanentAddress" label="Permanent Address" />
+                <FormTextArea
+                  rows={3}
+                  name="admin.permanentAddress"
+                  label="Permanent Address"
+                />
               </Col>
             </Row>
           </div>

@@ -9,7 +9,7 @@ const ActionBar = ({title,children}:IActionBarProps) => {
     return (
         <>
             <h1>{title}</h1>
-             <div style={{display:'flex'}}>
+             <div style={{display:'flex',justifyContent:'space-between',alignItems:"center"}}>
                 {children}
              </div>
         </>
