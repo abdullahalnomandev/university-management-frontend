@@ -25,6 +25,7 @@ const FacultyPage = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+  
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
