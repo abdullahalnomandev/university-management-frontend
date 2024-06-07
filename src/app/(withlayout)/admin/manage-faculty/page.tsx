@@ -25,7 +25,7 @@ const FacultyPage = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  
+
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
@@ -43,7 +43,6 @@ const FacultyPage = () => {
 
   const faculties = data?.faculties;
   const meta = data?.meta;
-  console.log(faculties);
 
   const columns = [
     {
