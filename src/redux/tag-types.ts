@@ -5,6 +5,7 @@ export enum tagTypes {
   admin="admin",
   academicFaculty = "academic-faculty",
   academicDepartment = "academic-department",
+  academicSemester = "academic-semester",
 
 }
 
