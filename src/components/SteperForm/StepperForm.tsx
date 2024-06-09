@@ -5,25 +5,30 @@ import { FormProvider, useForm } from "react-hook-form";
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
 import { useRouter } from "next/navigation";
 
+interface ISteps {
+  title?: string;
+  content?: React.ReactElement | React.ReactNode;
+}
+
 interface IProps {
   submitHandler: (el: any) => void;
   navigateLink?: string;
-  steps: {
-    title?: string;
-    content?: React.ReactElement | React.ReactNode;
-  }[];
+  steps: ISteps[];
+  persistkey:string;
 }
 
 const StepperForm: React.FC<IProps> = ({
   steps,
+  persistkey,
   submitHandler,
   navigateLink
 }) => {
   const router = useRouter();
-  const [current, setCurrent] = useState<number>(
-    !!getFromLocalStorage("step")
-      ? Number(JSON.parse(getFromLocalStorage("step") as string).step)
-      : 0
+  const [current, setCurrent] = useState<number>(!!getFromLocalStorage("step")? Number(JSON.parse(getFromLocalStorage("step") as string).step): 0
+  );
+
+  const [savedValues, setSavedValues] = useState(!!getFromLocalStorage(persistkey)? 
+  (JSON.parse(getFromLocalStorage(persistkey) as string)): ''
   );
 
   useEffect(() => {
@@ -40,14 +45,22 @@ const StepperForm: React.FC<IProps> = ({
 
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
-  const methods = useForm();
+  const methods = useForm({defaultValues:savedValues});
+  const watch = methods.watch()
+
+  useEffect(() => {
+    setToLocalStorage(persistkey, JSON.stringify(watch));
+  }, [watch,persistkey,methods]);
+
+
   const { handleSubmit, reset } = methods;
 
   const handleStudentOnSubmit = (data: any) => {
     submitHandler(data);
     reset();
     setToLocalStorage("step", JSON.stringify({ step: 0 }));
-     navigateLink && router.push(navigateLink);
+    setToLocalStorage(persistkey, JSON.stringify(watch));
+    navigateLink && router.push(navigateLink);
   };
 
   return (

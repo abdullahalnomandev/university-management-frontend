@@ -57,7 +57,7 @@ const StudentBasicInfo = () => {
           <Col span={12} style={{ margin: "10px 0" }}>
             <FormSelectField
               name="student.bloodGroup"
-              options={genderOptions}
+              options={bloodGroupOptions}
               size="large"
               label="Blood group"
               placeholder="Select"
