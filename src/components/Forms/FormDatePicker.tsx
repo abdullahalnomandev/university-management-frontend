@@ -15,7 +15,7 @@ const FormDatePicker = ({ name, label, value, size, onChange }: UMDatePikerProps
 
   const handleOnChange: DatePickerProps["onChange"] = (date, dateString) => {
     onChange ? onChange(date, dateString) : null;
-     setValue(name, dateString);
+     setValue(name, date);
   };
 
   return (

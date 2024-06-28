@@ -10,6 +10,9 @@ export enum tagTypes {
   building = "building",
   room = "room",
   course = "course",
+  semesterRegistration = "semester-registration",
+  offeredCourse = "offered-course",
+
 
 }
 

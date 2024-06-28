@@ -18,7 +18,7 @@ interface ISelectFieldProps {
   placeholder?:string;
 }
 
-const FormSelectField = ({
+const FormMultiSelectField = ({
   options,
   name,
   label,
@@ -43,6 +43,8 @@ const FormSelectField = ({
             style={{width:"100%"}}
             size={size}
             placeholder={placeholder}
+            allowClear
+            mode="multiple"
           />
         )}
       />
@@ -50,4 +52,4 @@ const FormSelectField = ({
   );
 };
 
-export default FormSelectField;
+export default FormMultiSelectField;

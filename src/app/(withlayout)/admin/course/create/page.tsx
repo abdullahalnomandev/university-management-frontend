@@ -2,6 +2,7 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import FormMultiSelectField from "@/components/Forms/FormMultiSelectField";
 import { SelectOptions } from "@/components/Forms/FormSelectField";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useAddCourseMutation, useCoursesQuery } from "@/redux/api/courseAPi";
@@ -66,13 +67,13 @@ const CreateCoursePage = () => {
             <div style={{ margin: "10px 0px" }}>
               <FormInput name="credits" label="Course Credits" />
             </div>
-            {/* <div style={{ margin: "10px 0px" }}>
+            <div style={{ margin: "10px 0px" }}>
               <FormMultiSelectField
                 options={coursesOptions as SelectOptions[]}
                 name="coursePreRequisites"
                 label="Pre Requisite Courses"
               />
-            </div> */}
+            </div>
           </Col>
         </Row>
         <Button type="primary" htmlType="submit">
