@@ -15,7 +15,8 @@ interface ISelectFieldProps {
   value?: string | string[] | undefined;
   label?: string;
   defaultValue?: SelectOptions;
-  placeholder?:string;
+  placeholder?: string;
+  handleChange?: (el: string) => void
 }
 
 const FormSelectField = ({
@@ -25,7 +26,8 @@ const FormSelectField = ({
   value,
   defaultValue,
   size,
-  placeholder
+  placeholder,
+  handleChange
 }: ISelectFieldProps) => {
   const { control } = useFormContext();
 
@@ -37,10 +39,10 @@ const FormSelectField = ({
         name={name}
         render={({ field: { value, onChange } }) => (
           <Select
-            onChange={onChange}
+            onChange={handleChange ? handleChange : onChange}
             options={options}
             value={value}
-            style={{width:"100%"}}
+            style={{ width: "100%" }}
             size={size}
             placeholder={placeholder}
           />

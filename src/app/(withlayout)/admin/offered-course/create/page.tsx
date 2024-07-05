@@ -69,8 +69,9 @@ const CreateOfferedCoursePage = () => {
                         <div style={{ margin: "10px 0px" }}>
                             <ACDepartmentField
                                 name="academicDepartmentId"
-                                label="Academic department"
-                            />
+                                label="Academic department" onChange={function (e: any): void {
+                                    throw new Error("Function not implemented.");
+                                } }                            />
                         </div>
                     </Col>
                 </Row>

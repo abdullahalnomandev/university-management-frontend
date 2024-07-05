@@ -5,8 +5,9 @@ import { useAcademicDepartmentsQuery } from '@/redux/api/academic/departmentApi'
 type ACDepartmentFieldProps = {
   name: string;
   label: string;
+  onChange:(e:any)=>void;
 }
-const ACDepartmentField = ({name,label}:ACDepartmentFieldProps) => {
+const ACDepartmentField = ({name,label,onChange}:ACDepartmentFieldProps) => {
 
     const {data , isLoading} =  useAcademicDepartmentsQuery({limit:100,page:1})
 
@@ -21,6 +22,7 @@ const ACDepartmentField = ({name,label}:ACDepartmentFieldProps) => {
             options={academicDepartmentOptions as unknown as SelectOptions[]}
             label={label}
             placeholder="Select"
+            handleChange={(e)=>onChange(e)}
         />
     );
 };

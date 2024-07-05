@@ -12,6 +12,8 @@ export enum tagTypes {
   course = "course",
   semesterRegistration = "semester-registration",
   offeredCourse = "offered-course",
+  offeredCourseSection = "offered-course-section"
+
 
 
 }
