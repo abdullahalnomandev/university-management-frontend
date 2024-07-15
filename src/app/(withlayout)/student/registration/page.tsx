@@ -21,7 +21,7 @@ const StudentRegistrationPage = () => {
     }
     router.push("/student/pre-registration");
   };
-  
+
 
   return (
     <>
@@ -55,6 +55,7 @@ const StudentRegistrationPage = () => {
               type="success"
             />
           </div>
+          
         ))}
     </>
   );

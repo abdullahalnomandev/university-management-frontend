@@ -2,12 +2,13 @@
 import {
   DeleteOutlined,
   EditOutlined,
+  PlayCircleOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 
-import { Button, Input, message } from "antd";
+import { Button, Input, Tooltip, message } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import ActionBar from "@/components/ui/ActionBar";
@@ -113,6 +114,18 @@ const SemesterRegistrationPage = () => {
                 <EditOutlined />
               </Button>
             </Link>
+            <Tooltip title="Start Semester" placement="bottom">
+              <Button
+                type="primary"
+                onClick={() => console.log(data?.id)}
+                style={{
+                  margin: "0px 5px",
+                }}
+              >
+                <PlayCircleOutlined />
+              </Button>
+            </Tooltip>
+
             <Button
               onClick={() => deleteHandler(data?.id)}
               type="primary"
