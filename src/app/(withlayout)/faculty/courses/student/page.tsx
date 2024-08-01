@@ -79,7 +79,9 @@ const FacultyCoursesStudentPage = ({ searchParams }: Record<string, any>) => {
             render: function (data: any,i:number) {
                 return (
                     <div key={i}>
+                        <Link href={`/faculty/student-result?studentId=${data.id}&courseId=${courseId}&offeredCourseSectionId=${offeredCourseSectionId}`} >
                         <Button type="primary">View Marks</Button>
+                        </Link>
                     </div>
                 );
             },
