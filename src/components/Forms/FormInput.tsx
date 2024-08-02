@@ -13,6 +13,7 @@ interface IInput {
   placeholder?: string;
   validation?: object;
   label?: string;
+  required:boolean;
 }
 
 const FormInput = ({
@@ -23,7 +24,8 @@ const FormInput = ({
   id,
   placeholder,
   validation,
-  label
+  label,
+  required
 }: IInput) => {
   const { control, formState:{errors} } = useFormContext();
 
@@ -31,6 +33,7 @@ const FormInput = ({
   console.log("err",errorMessage)
   return (
     <>
+      {required? <span style={{color:'red'}}>*</span>:null}
       {label ? label : ""}
       <Controller
         control={control}

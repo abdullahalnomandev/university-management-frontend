@@ -5,9 +5,13 @@ import LocalGuardianInfo from '@/components/StudentForms/LocalGuardianInfo';
 import StudentBasicInfo from '@/components/StudentForms/StudentBasicInfo';
 import StudentInfo from '@/components/StudentForms/StudentInfo';
 import UMBreadCrumb from '@/components/ui/UMBreadCrumb';
+import { useAddStudentWithFormDataMutation } from '@/redux/api/studentApi';
+import { message } from 'antd';
 import React from 'react';
 
 const CreateStudentPage = () => {
+
+  const [addStudentWithFormData] = useAddStudentWithFormDataMutation()
   const steps = [
     {
       title: "Student Information",
@@ -27,31 +31,50 @@ const CreateStudentPage = () => {
     },
   ];
 
-    const handleStudentSubmit = async (data:any) =>{
-       try {
-         console.log("DATA", data);
-       } catch (error) {
-        console.error('error', error);
-       }
+  const handleStudentSubmit = async (values: any) => {
+    const obj = { ...values };
+    const file = obj["file"];
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+    message.loading("Creating...")
+
+    console.log('obj', obj)
+    try {
+      const res = await addStudentWithFormData(formData);
+      if (!!res) {
+        message.success("Student created successfully")
+      }
+    } catch (err: any) {
+      console.log("err", err);
     }
-    return (
-      <div>
-        <UMBreadCrumb
-          items={[
-            {
-              label: `super_admin`,
-              link: `/super_admin`
-            },
-            {
-              label: `manage-student`,
-              link: `/super_admin/manage-student`
-            }
-          ]}
-        />
-        <h1>Create Student</h1>
-        <StepperForm steps={steps} submitHandler={(value)=>handleStudentSubmit(value)}/>
-      </div>
-    );
+  };
+
+  const base = "super_admin"
+
+  return (
+    <div>
+      <UMBreadCrumb
+        items={[
+          {
+            label: `${base}`,
+            link: `/${base}`
+          },
+          {
+            label: `manage-student`,
+            link: `/${base}/manage-student`
+          }
+        ]}
+      />
+      <h1>Create Student</h1>
+      <StepperForm
+        persistkey="student-create-form"
+        steps={steps} submitHandler={(value) => handleStudentSubmit(value)} />
+    </div>
+  );
 };
 
 export default CreateStudentPage;

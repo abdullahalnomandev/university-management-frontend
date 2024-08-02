@@ -130,7 +130,9 @@ const StudentResultPage = ({ searchParams }: Record<string, any>) => {
         return (
           <>
             <Link
-              href={`/faculty/update-mark?&examType=${data?.examType}&marks=${data?.marks}&academicSemesterId=${data?.academicSemesterId}&studentId=${studentId}&courseId=${courseId}&offeredCourseSectionId=${offeredCourseSectionId}`}
+              href={`/faculty/update-mark?&examType=${data?.examType}&marks=${data?.marks}
+              &academicSemesterId=${data?.academicSemesterId}&studentId=${studentId}
+              &courseId=${courseId}&offeredCourseSectionId=${offeredCourseSectionId}`}
             >
               <Button type="primary" style={{ marginLeft: "3px" }}>
                 Update marks
