@@ -1,7 +1,7 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import Link from "next/link";
 import {
   DeleteOutlined,
@@ -15,16 +15,19 @@ import { useDebounced } from "@/redux/hooks";
 import UMTable from "@/components/ui/UMTable";
 import { IDepartment } from "@/types";
 import dayjs from "dayjs";
-import { useAdminsQuery } from "@/redux/api/adminApi";
+import { useAdminsQuery, useDeleteAdminMutation } from "@/redux/api/adminApi";
+import UMModal from "@/components/ui/UMModal";
 
 const AdminPage = () => {
   const query: Record<string, any> = {};
-
+  const [ deleteAdmin] = useDeleteAdminMutation();
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [adminId, setAdminId] = useState<string>("");
 
   query["limit"] = size;
   query["page"] = page;
@@ -101,13 +104,18 @@ const AdminPage = () => {
                 style={{
                   margin: "0px 5px",
                 }}
-                onClick={() => console.log(data)}
                 type="primary"
               >
                 <EditOutlined />
               </Button>
             </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
+            <Button onClick={() => {
+              setOpen(true);
+              setAdminId(data);
+            }}
+            type="primary" danger
+            
+              >
               <DeleteOutlined />
             </Button>
           </>
@@ -132,6 +140,18 @@ const AdminPage = () => {
     setSortOrder("");
     setSearchTerm("");
   };
+
+  const deleteAdminHandler = async (id:string) => {
+     const res = await deleteAdmin(id);
+     if(res){
+      message.success("Admin deleted successfully")
+      setOpen(false);
+     }
+    try {
+    } catch (error:any) {
+      message.error(error.message)
+    }
+  }
   return (
     <div>
       <UMBreadCrumb
@@ -178,6 +198,15 @@ const AdminPage = () => {
         onTableChange={onTableChange}
         showPagination={true}
       />
+      <UMModal
+        title="Remove Modal"
+        isOpen={open}
+        closeModal={()=>setOpen(false)}
+        handleOk={()=> deleteAdminHandler(adminId)}
+
+      >
+        <p className="my-5">Do you want to remove this admin?</p>
+      </UMModal>
     </div>
   );
 };
