@@ -4,40 +4,59 @@ import FormInput from '@/components/Forms/FormInput';
 import FormSelectField from '@/components/Forms/FormSelectField';
 import UMBreadCrumb from '@/components/ui/UMBreadCrumb';
 import { bloodGroupOptions, departmentOptions, genderOptions } from '@/constants/global';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Row, message } from 'antd';
 import React from 'react';
 import FormDatePicker from '@/components/Forms/FormDatePicker';
 import FormTextArea from '@/components/Forms/FormTextArea';
-import { yupResolver } from '@hookform/resolvers/yup';
 import UploadImage from '@/components/ui/UploadImage';
+import ACFacultyField from '@/components/Forms/ACFacultyField';
+import ACDepartmentField from '@/components/Forms/ACDepartmentField';
+import { useAddFacultyWithFormDataMutation } from '@/redux/api/facultyApi';
 
 const CreateFacultyPage = () => {
 
-  const onSubmit = async (data: any) => {
+  const [addFacultyWithFormData] = useAddFacultyWithFormDataMutation()
+
+  const adminOnSubmit = async (values: any) => {
+    const obj = { ...values };
+    const file = obj["file"];
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+    message.loading("Creating...")
+
+    console.log('obj',obj)
     try {
-      console.log(data);
+     const res =   await addFacultyWithFormData(formData);
+     if(!!res){
+      message.success("Faculty created successfully")
+     }
     } catch (err: any) {
       console.log("err", err);
     }
   };
 
+  const base = "super_admin"
     return (
       <div>
         <UMBreadCrumb
           items={[
             {
-              label: `super_faculty`,
-              link: `/super_faculty`
+              label: `${base}`,
+              link: `/${base}`
             },
             {
               label: `manage-faculty`,
-              link: `/super_faculty/manage-faculty`
+              link: `/${base}/manage-faculty`
             }
           ]}
         />
         <h1>Create Faculty</h1>
         <div>
-          <Form submitHandler={onSubmit}>
+          <Form submitHandler={adminOnSubmit}>
             <div
               style={{
                 border: "1px solid #d9d9d9",
@@ -116,26 +135,14 @@ const CreateFacultyPage = () => {
                   span={8}
                   style={{ marginBottom: "10px" }}
                 >
-                  <FormSelectField
-                    name="faculty.managementFaculty"
-                    options={departmentOptions}
-                    size="large"
-                    label="Academic Faculty"
-                    placeholder="Select"
-                  />
+                  <ACFacultyField name="faculty.academicFaculty" label="Academic Faculty" />
                 </Col>
                 <Col
                   className="gutter-row"
                   span={8}
                   style={{ marginBottom: "10px" }}
                 >
-                  <FormSelectField
-                    name="faculty.managementDepartment"
-                    options={departmentOptions}
-                    size="large"
-                    label="Academic Department"
-                    placeholder="Select"
-                  />
+                  <ACDepartmentField name='faculty.academicDepartment' label='Academci Department' />
                 </Col>
 
                 <Col
