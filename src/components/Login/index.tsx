@@ -7,10 +7,11 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
-import {storeUserInfo} from "@/services/auth.service";
+import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
+import Link from "next/link";
 
 type FormValues = {
   id: string;
@@ -24,7 +25,7 @@ const Login = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-    
+
       storeUserInfo({ accessToken: res?.accessToken });
       console.log(res);
       if (res?.accessToken) {
@@ -59,7 +60,7 @@ const Login = () => {
         <>
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
-              <FormInput name="id" type="text" size="large" label="User Id"  required />
+              <FormInput name="id" type="text" size="large" label="User Id" required />
             </div>
             <div
               style={{
@@ -74,6 +75,18 @@ const Login = () => {
                 required
               />
             </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: "5px 0px",
+              }}
+            >
+              <div style={{ marginLeft: "auto" }}>
+                <Link href="/forgot-password">forgot password?</Link>
+              </div>
+            </div>
+
             <Button type="primary" htmlType="submit">
               Login
             </Button>

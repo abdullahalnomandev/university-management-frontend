@@ -13,7 +13,8 @@ export enum tagTypes {
   semesterRegistration = "semester-registration",
   offeredCourse = "offered-course",
   offeredCourseSection = "offered-course-section",
-  courseRegistration = "course-registration"
+  courseRegistration = "course-registration",
+  payment = "payment"
 
 
 
